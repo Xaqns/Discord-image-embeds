@@ -9,13 +9,13 @@
 
 <body>
     <h1>Create Your Embed Page</h1>
-    <form action="generate.php" method="post">
-        <label for="image_url">Image URL:</label><br>
-        <input type="text" id="image_url" name="image_url"><br>
-        <label for="description">Description:</label><br>
-        <textarea id="description" name="description"></textarea><br><br>
-        <input type="submit" value="Generate Embed Page">
-    </form>
+    <label for="image_url">Image URL:</label><br>
+    <input type="text" id="image_url"><br>
+    <label for="description">Description:</label><br>
+    <textarea id="description"></textarea><br><br>
+    <button onclick="generatePage()">Generate Embed Page</button>
+
+    <script src="generatePage.js"></script>
 </body>
 
 </html>
