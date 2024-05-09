@@ -1,3 +1,6 @@
+const fs = require('fs');
+const { execSync } = require('child_process');
+
 function generatePage() {
     var imageUrl = document.getElementById('image_url').value;
     var description = document.getElementById('description').value;
@@ -21,10 +24,15 @@ function generatePage() {
     </body>
     </html>`;
 
-    var newWindow = window.open();
-    newWindow.document.open();
-    newWindow.document.write(htmlContent);
-    newWindow.document.close();
+    // Write HTML content to a new file
+    fs.writeFileSync('embedded_page.html', htmlContent);
 
-    alert('Your embedded page has been created. You can access it at: ' + uniqueUrl);
+    // Deploy the new file to Vercel
+    try {
+        execSync('vercel --prod');
+        alert('Your embedded page has been created and deployed. You can access it at: ' + uniqueUrl);
+    } catch (error) {
+        console.error('Error deploying to Vercel:', error);
+        alert('There was an error deploying your page. Please try again later.');
+    }
 }
